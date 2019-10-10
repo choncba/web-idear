@@ -13,7 +13,6 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { MapaComponent } from './components/mapa/mapa.component';
-import { InstitComponent } from './components/instit/instit.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +26,7 @@ import { InstitComponent } from './components/instit/instit.component';
     ContactoComponent,
     FooterComponent,
     MenuComponent,
-    MapaComponent,
-    InstitComponent
+    MapaComponent
   ],
   imports: [
     BrowserModule,

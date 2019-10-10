@@ -1,0 +1,41 @@
+.logo{
+    float: left;
+    width: 25%;
+}
+
+.logo img{
+    width: 64%;
+    margin-left: 116px;
+    margin-top: 34px;
+}
+
+.menu{
+    float: right;
+    width: 75%;
+}
+
+.menu nav{
+    width: 100%;
+    margin-left: 180px;
+    margin-top: 30px;
+}
+
+.menu nav ul li{
+    display: inline-block; /* Muestra los textos uno al lado del otro */
+    margin: 0px auto;
+    text-align: center;
+    line-height: 90px;
+    background: url('../../../assets/nav-bg.png') no-repeat scroll right center; /* Icono de decoracion en el menu */
+}
+ 
+.menu a{
+    font-family: 'Open Sans Bold';
+    display: block;
+    padding-right: 20px;
+    padding-left: 20px;
+    height: inherit;
+    text-decoration: none;
+    color: #404040;
+    font-size: 14px;
+    font-weight: 100;
+}

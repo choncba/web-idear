@@ -16,6 +16,7 @@ export class SliderComponent implements OnInit {
     $('.bxslider').bxSlider({ // ver https://bxslider.com/examples/image-slideshow-captions/
       mode: 'fade',
       auto: true,
+      pager: false,
       adaptiveHeight: true,
       infiniteLoop: true,
       controls: false,

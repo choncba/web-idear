@@ -1,0 +1,82 @@
+/* Team Slider */
+/* Grilla de los componentes del slider */
+.grid-container {
+    display: grid;
+    grid-template-columns: 350px;
+    grid-template-rows: 150px 25px 25px 1auto;
+    grid-template-areas: "foto" "nombre" "cargo" "descripcion";
+  }
+  
+.foto { grid-area: foto; }
+
+.nombre { grid-area: nombre; }
+
+.cargo { grid-area: cargo; }
+
+.descripcion { grid-area: descripcion; }
+
+.grid-container{
+    max-width: 300px;
+    overflow: hidden;
+}
+/* FIN de grilla */
+
+.titulo{
+    padding-top: 50px;
+    font-family: 'Open Sans Bold';
+    font-size: 24px;
+    text-align: center;
+    color: black;
+}
+
+.titulo::after{
+    background: #21748C;
+    display: block;
+    content: "";
+    height: 1px;
+    width: 120px;
+    margin: 15px auto 10px;
+    position: relative;
+}
+
+.nombre{
+    font-family: 'Open Sans Bold';
+    font-size: 14px;
+    text-align: center;
+    color: #444444;
+    text-transform: uppercase;
+    padding: 18px 0px 0px 0px;
+}
+
+.nombre::after{
+    background: #21748C;
+    display: block;
+    content: "";
+    height: 1px;
+    width: 120px;
+    margin: 15px auto 10px;
+    position: relative;
+}
+
+.cargo{
+    font-family: 'Open Sans Thin';
+    font-size: 14px;
+    text-align: center;
+}
+
+.descripcion{
+    font-family: 'Open Sans Thin';
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+    width: 300px;
+    padding-left: 40px;
+}
+
+.slider{
+    padding: 50px 50px 0px 50px;     
+}
+
+.bx-wrapper {
+    box-shadow: none;
+}
