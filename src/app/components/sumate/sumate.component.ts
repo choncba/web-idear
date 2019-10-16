@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
+//import { jarallax } from 'jarallax';
+//import * as jarallax from 'jarallax';
 
-import * as parallax from 'simple-parallax-js';
+declare var jQuery:any;
+declare var $:any;
 
 @Component({
   selector: 'app-sumate',
@@ -12,12 +15,8 @@ export class SumateComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    var images = document.querySelectorAll('.image_sumate');
-    new parallax(images, {
-      delay: 0,
-      orientation: 'down',
-      scale: 1.3,
-      overfow: true
+    jarallax(document.querySelectorAll('.jarallax'), {
+      speed: 0.2
     });
   }
 
