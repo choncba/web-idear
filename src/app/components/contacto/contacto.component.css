@@ -1,0 +1,29 @@
+.contacto{
+    width: 100%;
+    min-height: 300px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 300;
+    position: relative;
+    /* padding: 1% 0px 0px 40%; */
+    
+}
+
+.titulo{
+    text-align: center;
+    color: white;
+    font-size: 36px;
+    font-family: 'Open Sans Thin';
+    text-transform: uppercase;
+    padding-top: 50px;
+}
+
+.titulo h1::after{
+    background: #21748C;
+    display: block;
+    content: "";
+    height: 1px;
+    width: 120px;
+    margin: 15px auto 20px;
+    position: relative;
+}

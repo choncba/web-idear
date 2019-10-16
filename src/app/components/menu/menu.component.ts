@@ -31,5 +31,11 @@ export class MenuComponent implements OnInit {
         scrollTop: $(".equipo").offset().top - 100
       }, 1000);
     });
+
+    $("#_actividades").click(function(){
+      $('html, body').animate({
+        scrollTop: $(".actividades").offset().top - 100
+      }, 1000);
+    });
   }
 }
