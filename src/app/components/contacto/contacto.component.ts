@@ -13,7 +13,7 @@ export class ContactoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    jarallax(document.querySelectorAll('.contacto'), {
+    jarallax(document.querySelectorAll('.jarallax'), {
       speed: 0.2
     });
   }

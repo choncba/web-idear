@@ -1,19 +1,31 @@
-.contacto{
+/* div{
+    border: 1px solid black;
+} */
+.jarallax{
     width: 100%;
-    min-height: 300px;
+    font-family: 'Open Sans Thin';
+    color: white;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 300;
+    z-index: 0;
     position: relative;
-    /* padding: 1% 0px 0px 40%; */
-    
 }
 
-.titulo{
+.consultanos{
+    /* Grilla */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 550px;
+    grid-template-areas: "titulo" "plantilla";
+    /* Estilos */
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.titulo { 
+    /* Grilla */
+    grid-area: titulo; 
+    /* Estilos */
     text-align: center;
-    color: white;
     font-size: 36px;
-    font-family: 'Open Sans Thin';
     text-transform: uppercase;
     padding-top: 50px;
 }
@@ -27,3 +39,90 @@
     margin: 15px auto 20px;
     position: relative;
 }
+
+.plantilla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "datos formulario";
+  grid-area: plantilla;
+}
+
+.datos {
+    /* Grilla */ 
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 50px 50px 50px;
+    grid-template-areas: "." "." "." ".";
+    grid-area: datos; 
+    /* Estilos */
+    font-family: 'Open Sans Thin';
+    font-size: 14px;
+    margin-left: 10%;
+}
+
+.datos i{
+    margin: 10px;
+}
+
+.datos a{
+    text-decoration: none;
+    color: white;
+}
+
+.datos-titulo, .datos-email, .datos-telefono, .datos-direccion,
+.form-titulo{
+    display: flex;
+    align-items: center;
+}
+
+.datos-titulo{
+    padding: 10px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.formulario { 
+    display: grid;
+    grid-area: formulario; 
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 50px 50px 50px 50px 150px 50px;
+    grid-template-areas: "." "." "." "." "." "." ".";
+    /* Estilos */
+    font-family: 'Open Sans Thin';
+    font-size: 14px;
+    margin-right: 10%;
+}
+
+.form-titulo{
+    padding: 10px;
+    text-align: left;
+    font-size: 18px;
+}
+
+/* .formulario input, textarea, button{
+    margin: 10px;
+} */
+
+.formulario input, textarea{
+    background: transparent;
+    border: none;
+}
+
+.formulario button{
+    background: #21748C;
+    color: white;
+    font-family: 'Open Sans Thin';
+    font-size: 18px;
+    width: 100px;
+    height: 50px;
+    border: 1px solid white;
+    float: right;
+}
+
+.borde{
+    padding: 5px;
+    border: 1px solid white;
+}
+
+

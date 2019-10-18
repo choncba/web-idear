@@ -37,5 +37,11 @@ export class MenuComponent implements OnInit {
         scrollTop: $(".actividades").offset().top - 100
       }, 1000);
     });
+
+    $("#_consultanos").click(function(){
+      $('html, body').animate({
+        scrollTop: $(".consultanos").offset().top - 100
+      }, 1000);
+    });
   }
 }
