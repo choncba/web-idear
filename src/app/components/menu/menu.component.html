@@ -1,3 +1,4 @@
+<link href="https://cdn.materialdesignicons.com/4.5.95/css/materialdesignicons.min.css" rel="stylesheet">
 <div class="logo">
         <a href="#" title="Fundacion IDEAR" rel="home"><img src="http://fundacionidear.org/wp-content/uploads/2016/05/logo2.png" alt="Fundacion IDEAR"></a>
 </div>
@@ -10,6 +11,19 @@
             <li id="_actividades"><a href="#"><span>Actividades</span></a></li>
             <li id="_aula_virtual"><a href="#"><span>Aula Virtual</span></a></li>
             <li id="_consultanos"><a href="#"><span>Contacto</span></a></li>
+            <li>
+              <div *ngIf="enableEdit; else login">
+                <a [routerLink]="['/']" (click)="logOut()"><span>LogOut</span></a>
+              </div>
+              <ng-template #login>
+                <a [routerLink]="['/admin']"><span>Login</span></a>
+              </ng-template>
+            </li>
+            <li *ngIf="enableEdit">
+              <a [routerLink]="['/admin_setup']">
+                <span class="mdi mdi-settings"></span>
+              </a>
+            </li>
           </ul>
         </nav>
 </div>

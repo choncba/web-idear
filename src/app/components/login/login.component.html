@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="logo">
+        <a href="#" title="Fundacion IDEAR" rel="home"><img src="http://fundacionidear.org/wp-content/uploads/2016/05/logo2.png" alt="Fundacion IDEAR"></a>
+    </div>
+</div>
+<div class="container">
+    <h1>Iniciar sesión</h1>
+    
+    <form class="form">
+        <div>
+            <input type="text" #username name="user" placeholder="Usuario">
+        </div>
+        <div>
+            <input type="password" #password name="password" placeholder="Contraseña">
+        </div>
+        <div>
+            <button type="submit" id="login-button" (click)="logIn(username.value, password.value)" >Entrar</button>
+        </div>
+    </form>
+</div>
