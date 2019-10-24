@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 declare var jQuery:any;
 declare var $:any;
@@ -9,6 +9,8 @@ declare var $:any;
   styleUrls: ['./testimoniales.component.css']
 })
 export class TestimonialesComponent implements OnInit {
+
+  @Input() enableEdit: boolean;
 
   constructor() { }
 

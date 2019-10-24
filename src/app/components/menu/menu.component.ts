@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';// Metodos de login
 
 declare var jQuery:any;
@@ -11,12 +11,11 @@ declare var $:any;
   providers: [LoginService]
 })
 export class MenuComponent implements OnInit {
+  private enableEdit: boolean;
 
-  @Input() enableEdit: boolean; // Importo la variable desde menu.component.ts para verificar si se habilita la edicion
-
-  constructor(
-    private login_service: LoginService
-  ) { }
+  constructor( private login_service: LoginService ){
+    this.enableEdit = this.login_service.getUserLoggedIn();
+  }
 
   ngOnInit() {
     // Utilizo jQuery para hacer los scrolls del menu
@@ -50,11 +49,12 @@ export class MenuComponent implements OnInit {
       }, 1000);
     });
   
-    console.log(this.enableEdit?'Menu Edición Activada':'Menu Edición Desactivada');
+    //console.log(this.enableEdit?'Menu Edición Activada':'Menu Edición Desactivada');
   }
 
   logOut(){
     this.login_service.logOut();
-    this.enableEdit = false;
+    window.location.reload();     // Recargo la página para que los componentes que tienen edición
+                                  // lean de nuevo la variable enableEdit
   }
 }

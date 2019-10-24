@@ -1,8 +1,26 @@
 <div class="equipo"></div>
-<div class="titulo">Equipo</div>
+<div class="titulo">
+    <div *ngIf="enableEdit">
+        <a [routerLink]="['/edit','Equipo']">
+            <span class="mdi mdi-settings"></span>
+        </a>
+    </div>
+    Equipo
+</div>
 <div class="slider">
     <div class="team-slider">
-        <div class="grid-container">
+        <!-- Datos generados desde el servidor: -->
+        <!-- La función sort en el query a la BD del lado del servidor devuelve el orden correcto, por lo que no necesito corregirlo acá -->
+        <div class="grid-container" *ngFor="let member of members">
+            <ng-container *ngIf="member.show">
+                <div class="foto"><img src="{{url+'get-image/'+member.picture}}" alt="" *ngIf="member.picture"></div>
+                <div class="nombre">{{member.name}}</div>
+                <div class="cargo">{{member.position}}</div>
+                <div class="descripcion">{{member.description}}</div>
+            </ng-container>
+        </div>
+        <!-- Datos de ejemplo: -->
+        <!-- <div class="grid-container">
             <div class="foto"><img src="../../../assets/equipo/Araoz-640x430.jpg" alt=""></div>
             <div class="nombre">Juan Aráoz</div>
             <div class="cargo">Presidente</div>
@@ -33,6 +51,6 @@
             <div class="descripcion">
                 Licenciada en Comunicación Social,especialización en  Institucional (UNC) 35 años
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

@@ -19,6 +19,7 @@ import { MapaComponent } from './components/mapa/mapa.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { ErrorComponent } from './components/error/error.component';
+import { EditComponent } from './components/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ErrorComponent } from './components/error/error.component';
     MapaComponent,
     LoginComponent,
     MainComponent,
-    ErrorComponent
+    ErrorComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

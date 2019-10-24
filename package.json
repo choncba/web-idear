@@ -19,7 +19,6 @@
     "@angular/platform-browser": "~8.2.3",
     "@angular/platform-browser-dynamic": "~8.2.3",
     "@angular/router": "~8.2.3",
-    "@mdi/font": "^4.5.95",
     "bxslider": "^4.2.14",
     "jarallax": "^1.11.1",
     "jquery": "^3.4.1",

@@ -8,15 +8,14 @@ export class UserLogged{
     ){}
 }
 
-// Imágenes del slider principal
-export class SliderImages{
+export class TeamMember{
     constructor(
-        public _id: string,
-        public name: string,
-        public type: string,
-        public widh: number,
-        public height: number,
-        public location: string,
-        public order: number
+        public _id : string,
+        public name : string,
+        public position : string,
+        public description : string,
+        public picture : string,
+        public slider_order : number,
+        public show : boolean
     ){}
 }

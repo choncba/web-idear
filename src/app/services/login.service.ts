@@ -1,8 +1,6 @@
 // Importo métodos necesarios y variables para el servicio con la API del backend
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, from } from 'rxjs';
-// import { User } from '../models/models';
 import { Global } from '../services/global';
 
 @Injectable()
