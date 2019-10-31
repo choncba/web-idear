@@ -24,15 +24,20 @@ export class TeamService {
     return this._http.get(this.url+'get-team/'+id, {headers: this.json_header});
   }
 
-  saveTeamMember(){
-
+  // Guarda un nuevo miembro en el servidor
+  saveTeamMember(member: TeamMember): Observable<any>{
+    let params = JSON.stringify(member);
+    return this._http.post(this.url+'save-member',params, {headers: this.json_header});
   }
 
-  deleteTeamMember(){
+  // Elimina un miembro 
+  deleteTeamMember(id): Observable<any>{
+    return this._http.delete(this.url+'delete-member/'+id, {headers: this.json_header}); 
+}
 
-  }
-
-  addTeamMember(){
-
+  // Actualiza un miembro existente 
+  updateTeamMember(project): Observable<any>{
+      let params = JSON.stringify(project);
+      return this._http.put(this.url+'update-member/'+ project._id, params, {headers: this.json_header}); 
   }
 }

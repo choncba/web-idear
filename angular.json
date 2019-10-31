@@ -25,12 +25,14 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/bxslider/dist/jquery.bxslider.min.css"
+              "node_modules/bxslider/dist/jquery.bxslider.min.css",
+              "node_modules/cropme/dist/cropme.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bxslider/dist/jquery.bxslider.min.js",
-              "node_modules/jarallax/dist/jarallax.min.js"
+              "node_modules/jarallax/dist/jarallax.min.js",
+              "node_modules/cropme/dist/cropme.min.js"
             ]
           },
           "configurations": {

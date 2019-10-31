@@ -1,0 +1,100 @@
+/* Team Slider */
+/* Grilla de los componentes del slider */
+.member-list {
+    display: grid;
+    grid-template-columns: 25% 20% 20% 25% 5% 5%;
+    grid-template-rows: 1auto;
+    grid-template-areas: "foto nombre cargo descripcion orden ver";
+    padding: 1% 2% 0% 2%;
+  }
+  
+.foto { grid-area: foto; }
+.nombre { grid-area: nombre; }
+.cargo { grid-area: cargo; }
+.descripcion { grid-area: descripcion; }
+.orden { grid-area: orden; }
+.ver { grid-area: ver; }
+
+/* FIN de grilla */
+
+.titulo{
+    padding-top: 10px;
+    font-family: 'Open Sans Bold';
+    font-size: 24px;
+    text-align: center;
+    color: black;
+}
+
+.titulo::after{
+    background: #21748C;
+    display: block;
+    content: "";
+    height: 1px;
+    width: 120px;
+    margin: 15px auto 10px;
+    position: relative;
+}
+
+.rotulos, .nombre, .cargo, .descripcion, .ver, .orden, .foto{
+    font-family: 'Open Sans Thin';
+    font-size: 14px;
+    text-align: center;
+    color: #444444;
+    padding: 10px;
+}
+
+.orden input[type="number"]{
+    width: 50px;
+}
+
+.imagen{
+    border: 1px solid #444444;
+}
+
+.foto img{
+    max-height: 200px;
+}
+
+.logo{
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+.logo img{
+    width: 200px;
+}
+
+.botones{
+    /* width: 100%; */
+    text-align: center;
+    padding-top: 50px;
+    margin-left: 35%;
+}
+
+.boton-upload{
+    position: relative;
+    overflow: hidden;
+    /* display: inline-block; */
+    float: left;
+}
+
+.botones button{
+    background: #21748C;
+    color: white;
+    font-family: 'Open Sans Thin';
+    font-size: 18px;
+    width: auto;
+    height: 50px;
+    border: 1px solid white;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.boton-upload input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}

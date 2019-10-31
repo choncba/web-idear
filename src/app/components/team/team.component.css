@@ -7,7 +7,10 @@
     grid-template-areas: "foto" "nombre" "cargo" "descripcion";
   }
   
-.foto { grid-area: foto; }
+.foto{ 
+    grid-area: foto; 
+    position: relative;
+}
 
 .nombre { grid-area: nombre; }
 
@@ -21,12 +24,45 @@
 }
 /* FIN de grilla */
 
+.foto img{
+    position: relative;
+    z-index: 1;
+}
+
+.foto a{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 10;
+    color: white;
+    font-size: 24px;
+}
+
+.head{
+    text-align: center; 
+    height: 100px;
+}
+
+.add{
+    float: left;
+    font-size: 40px;
+    padding-top: 55px;
+    margin-left: 30%;
+}
+
+.add a{
+    color: black;
+    text-decoration: none;
+}
+
 .titulo{
     padding-top: 50px;
     font-family: 'Open Sans Bold';
     font-size: 24px;
     text-align: center;
     color: black;
+    float: left;
+    margin-left: 10%;
 }
 
 .titulo::after{

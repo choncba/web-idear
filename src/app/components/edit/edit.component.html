@@ -4,13 +4,63 @@
     </div>
 </div>
 <div class="container">
-    <h1>Editar {{tipo}}</h1>  
-    <div *ngIf="tipo == 'Equipo'">
-        <div class="grid-container" *ngFor="let member of members">
-            <div class="foto"><img src="{{url+'get-image/'+member.picture}}" alt="" *ngIf="member.picture"></div>
-            <div class="nombre">{{member.name}}</div>
-            <div class="cargo">{{member.position}}</div>
-            <div class="descripcion">{{member.description}}</div>
+    <ng-container *ngIf="id == 'new'; else EDIT">
+        <h1 class="titulo">Agregar Miembro</h1>
+    </ng-container>
+    <ng-template #EDIT>
+        <h1 class="titulo">Editar Miembro: {{member.name}}</h1>
+    </ng-template>
+</div>
+<div class="container" *ngIf="tipo == 'Equipo'">
+    <div class="member-list rotulos">
+        <div class="foto">Foto</div>
+        <div class="nombre">Nombre</div>
+        <div class="cargo">Cargo</div>
+        <div class="descripcion">Descripción</div>
+        <div class="orden">Orden</div>
+        <div class="ver">Ver</div>
+    </div>
+    <hr>
+    <div class="member-list">
+        <div class="foto imagen">
+            <ng-container *ngIf="id == 'new'; else IMG">
+                <img [src]="imgURL" *ngIf="imgURL" >
+            </ng-container>
+            <ng-template #IMG>
+                <img src="{{url+'get-image/'+member.picture}}" alt="">
+            </ng-template>
+        </div>
+        <div class="nombre">
+            <input type="text" #name="ngModel" [(ngModel)]="member.name">
+        </div>
+        <div class="cargo">
+            <input type="text" #position="ngModel" [(ngModel)]="member.position">
+        </div>
+        <div class="descripcion">
+            <textarea cols="35" rows="10" #description="ngModel" [(ngModel)]="member.description"></textarea>
+        </div>
+        <div class="orden">
+            <input type="number" #slider_order="ngModel" [(ngModel)]="member.slider_order">
+        </div>
+        <div class="ver">
+            <input type="checkbox" #show="ngModel" [(ngModel)]="member.show">
         </div>
     </div>
+    <div class="botones">
+        <!-- <span *ngIf="message">{{message}}</span> -->
+        <!-- Hago así el botón de subir para poder editar el estilo: https://blog.benestudio.co/custom-file-upload-button-with-pure-css-5aacf39aa0a -->
+        <div class="boton-upload">
+            <button>Subir Imágen</button>
+            <!-- <input type="file" name="image" accept="image/*" (change)="fileChangeEvent($event)"> -->
+            <input #file type="file" name="image" accept='image/*' (change)="preview(file.files)">
+        </div>
+        <button id="save" (click)="saveTeamMember()">Guardar</button>
+        <button id="cancel">Cancelar</button>
+    </div>
+</div>
+<div class="container" *ngIf="tipo == Actividades">
+
+</div>
+<div class="container" *ngIf="tipo == 'Testimonios'">
+
 </div>

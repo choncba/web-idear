@@ -1,24 +1,37 @@
 <div class="equipo"></div>
-<div class="titulo">
-    <div *ngIf="enableEdit">
-        <a [routerLink]="['/edit','Equipo']">
-            <span class="mdi mdi-settings"></span>
-        </a>
+<div class="head">
+    <div class="add">
+        <ng-container *ngIf="enableEdit" >
+                <a [routerLink]="['/edit','Equipo','new']" class="mdi mdi-account-plus"></a>
+        </ng-container>
     </div>
-    Equipo
+    <div class="titulo">
+        Equipo
+    </div>
 </div>
 <div class="slider">
     <div class="team-slider">
         <!-- Datos generados desde el servidor: -->
         <!-- La función sort en el query a la BD del lado del servidor devuelve el orden correcto, por lo que no necesito corregirlo acá -->
-        <div class="grid-container" *ngFor="let member of members">
-            <ng-container *ngIf="member.show">
-                <div class="foto"><img src="{{url+'get-image/'+member.picture}}" alt="" *ngIf="member.picture"></div>
-                <div class="nombre">{{member.name}}</div>
-                <div class="cargo">{{member.position}}</div>
-                <div class="descripcion">{{member.description}}</div>
+        <ng-container *ngFor="let member of members">
+            <ng-container *ngIf="enableEdit || member.show">    <!-- Si estoy editando muestro todos, si no, solo los habilitados -->
+                <div class="grid-container">
+                    <div class="foto">
+                        <img src="{{url+'get-image/'+member.picture}}" alt="" *ngIf="member.picture">
+                        <div *ngIf="enableEdit">
+                            <a [routerLink]="['/edit','Equipo', member._id]">
+                                <span class="mdi mdi-settings"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="nombre">{{member.name}}</div>
+                    <div class="cargo">{{member.position}}</div>
+                    <div class="descripcion">{{member.description}}</div>
+                </div>
             </ng-container>
-        </div>
+        </ng-container>
+        
+
         <!-- Datos de ejemplo: -->
         <!-- <div class="grid-container">
             <div class="foto"><img src="../../../assets/equipo/Araoz-640x430.jpg" alt=""></div>
