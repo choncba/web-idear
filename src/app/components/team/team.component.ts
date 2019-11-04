@@ -29,12 +29,12 @@ export class TeamComponent implements OnInit {
 
   ngOnInit(){
     this.getTeam(); // Busco todos los Team Members
-    this.showSlider();
+    //this.showSlider();
     //this.getTeamMember('5daa097f6392d44a7b8fc3ff');  // Busco un único Team Member con su id
   }
 
   showSlider(){
-    $(window).on('load', function(){
+    //$(window).on('load', function(){
       $('.team-slider').bxSlider({ // ver https://bxslider.com/examples/image-slideshow-captions/
         mode: 'horizontal',
         pager: false,
@@ -47,7 +47,7 @@ export class TeamComponent implements OnInit {
   
       // Saco de esta forma el box shadow porque el css del plugin esta en una jerarquía superior
       $('.bx-wrapper').css('box-shadow', 'none');
-    });
+    //});
   }
 
   // Obtengo los datos de los team members desde el servidor y los almacena en un array del modelo

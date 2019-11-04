@@ -17,7 +17,7 @@
             <ng-container *ngIf="enableEdit || member.show">    <!-- Si estoy editando muestro todos, si no, solo los habilitados -->
                 <div class="grid-container">
                     <div class="foto">
-                        <img src="{{url+'get-image/'+member.picture}}" alt="" *ngIf="member.picture">
+                        <img src="{{url+'get-image/'+member.picture}}" alt="" *ngIf="member.picture" (load)="showSlider()">
                         <div *ngIf="enableEdit">
                             <a [routerLink]="['/edit','Equipo', member._id]">
                                 <span class="mdi mdi-settings"></span>

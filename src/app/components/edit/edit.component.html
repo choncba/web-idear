@@ -23,12 +23,7 @@
     <hr>
     <div class="member-list">
         <div class="foto imagen">
-            <ng-container *ngIf="id == 'new'; else IMG">
-                <img [src]="imgURL" *ngIf="imgURL" >
-            </ng-container>
-            <ng-template #IMG>
-                <img src="{{url+'get-image/'+member.picture}}" alt="">
-            </ng-template>
+            <img [src]="imgURL" *ngIf="imgURL" id="image" (load) = "crop()">
         </div>
         <div class="nombre">
             <input type="text" #name="ngModel" [(ngModel)]="member.name">
@@ -54,8 +49,14 @@
             <!-- <input type="file" name="image" accept="image/*" (change)="fileChangeEvent($event)"> -->
             <input #file type="file" name="image" accept='image/*' (change)="preview(file.files)">
         </div>
-        <button id="save" (click)="saveTeamMember()">Guardar</button>
-        <button id="cancel">Cancelar</button>
+        <ng-container *ngIf="id == 'new'; else UPDATE">
+            <button id="save" (click)="saveTeamMember()">Guardar</button>
+        </ng-container>
+        <ng-template #UPDATE>
+            <button id="save" (click)="updateTeamMember()">Guardar</button>
+            <button id="delete" (click)="deleteTeamMember()">Eliminar</button>
+        </ng-template>
+        <button id="cancel" [routerLink]="[ '/']">Cancelar</button>
     </div>
 </div>
 <div class="container" *ngIf="tipo == Actividades">
