@@ -1,10 +1,9 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../../services/team.service';
 import { TeamMember } from '../../models/models';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Global } from '../../services/global';
 import { UploadService } from '../../services/upload.service';    // Servicio para subir archivos
-import { createComponent } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-edit',
@@ -12,7 +11,7 @@ import { createComponent } from '@angular/compiler/src/core';
   styleUrls: ['./edit.component.css'],
   providers: [ TeamService, UploadService ]
 })
-export class EditComponent implements OnInit, AfterViewInit {
+export class EditComponent implements OnInit{
   private tipo: string;
   private id: string;
   public url: string;
@@ -52,12 +51,6 @@ export class EditComponent implements OnInit, AfterViewInit {
         this.getMember(this.id);
       }
     } 
-  }
-
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    //this.crop();
   }
 
   crop(){
