@@ -23,7 +23,8 @@
     <hr>
     <div class="member-list">
         <div class="foto imagen">
-            <img [src]="imgURL" *ngIf="imgURL" id="image" (load) = "crop()">
+            <!-- <img [src]="imgURL" *ngIf="imgURL" id="image" (load) = "crop()"> -->
+            <img [src]="imgURL" *ngIf="imgURL" id="image">
         </div>
         <div class="nombre">
             <input type="text" #name="ngModel" [(ngModel)]="member.name">
@@ -49,6 +50,7 @@
             <!-- <input type="file" name="image" accept="image/*" (change)="fileChangeEvent($event)"> -->
             <input #file type="file" name="image" accept='image/*' (change)="preview(file.files)">
         </div>
+        <button id="crop" (click)="cut()">Cortar</button>
         <ng-container *ngIf="id == 'new'; else UPDATE">
             <button id="save" (click)="saveTeamMember()">Guardar</button>
         </ng-container>

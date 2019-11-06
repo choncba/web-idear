@@ -5,6 +5,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Global } from '../../services/global';
 import { UploadService } from '../../services/upload.service';    // Servicio para subir archivos
 
+declare var jQuery:any;
+declare var $:any;
+
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -60,10 +63,10 @@ export class EditComponent implements OnInit{
       {
         "container": {
           "width": "100%",
-          "height": 200
+          "height": 300
         },
         "viewport": {
-          "width": 200,
+          "width": 250,
           "height": 200,
           "type": "square",
           "border": {
@@ -87,6 +90,12 @@ export class EditComponent implements OnInit{
     );
   }
 
+  cut(){
+    let image = $('image').Cropme();
+    let position = image.Cropme('position');
+    console.log(position);
+  }
+
   // Obtengo los datos de los team members desde el servidor y los almacena en el modelo
   getMember(id){
     this.team_service.getTeamMember(id).subscribe(
@@ -94,7 +103,7 @@ export class EditComponent implements OnInit{
         if(response.team_member){
           this.member = response.team_member;
           this.imgURL = this.url + 'get-image/' + this.member.picture;
-          console.log(this.imgURL);
+          //console.log(this.imgURL);
         }
       },
       error => {
@@ -128,6 +137,7 @@ export class EditComponent implements OnInit{
   }
 
   saveTeamMember(){
+
     this.team_service.saveTeamMember(this.member).subscribe(
       response => {
         //console.log(response);
