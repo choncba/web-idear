@@ -19,3 +19,14 @@ export class TeamMember{
         public show : boolean
     ){}
 }
+
+export class Activity{
+    constructor(
+        public _id  : string,
+        public date : string,
+        public pictures : [],
+        public principal_picture : number,
+        public title : string, 
+        public text : string
+    ){}
+}

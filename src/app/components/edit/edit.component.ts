@@ -15,8 +15,10 @@ declare var $:any;
   providers: [ TeamService, UploadService ]
 })
 export class EditComponent implements OnInit{
-  private tipo: string;
-  private id: string;
+  //private tipo: string;
+  //private id: string;
+  public tipo: string;
+  public id: string;
   public url: string;
   public member: TeamMember;
   public filesToUpload: Array<File>;  // Array para almacenar las imágenes que se subirán en el browser

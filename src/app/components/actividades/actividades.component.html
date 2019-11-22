@@ -1,6 +1,13 @@
 <div class="actividades"></div>
-<div class="titulo">
+<div class="head">
+    <div class="add">
+        <ng-container *ngIf="enableEdit" >
+                <a [routerLink]="['/edit','Actividades','new']" class="mdi mdi-note-plus"></a>
+        </ng-container>
+    </div>
+    <div class="titulo">
         <h1>Actividades</h1>
+    </div>
 </div>
 <div id='filter'>
     <button class='all active'>Todos</button>
@@ -14,9 +21,10 @@
 <div id='posts'>
     <div class='post 2016'><img src='../../../assets/actividades/2016/01/ciclo de conferencias.jpg'/>
         <div class='post-content'>
-        <h2>2016</h2>
-        <p>Ciclo de Conferencias</p>
-        <a href="#">View more</a> </div>
+            <h2>2016</h2>
+            <p>Ciclo de Conferencias</p>
+            <a href="#">View more</a> 
+        </div>
     </div>
     <div class='post 2016'><img src='../../../assets/actividades/2016/07/desayuno llaryora.jpg'/>
         <div class='post-content'>

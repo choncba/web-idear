@@ -12,14 +12,16 @@
             <li id="_aula_virtual"><a href="#"><span>Aula Virtual</span></a></li>
             <li id="_consultanos"><a href="#"><span>Contacto</span></a></li>
             <li>
-              <div *ngIf="enableEdit; else login">
+              <!-- <div *ngIf="enableEdit; else login"> -->
+              <div *ngIf="edit; else login">
                 <a [routerLink]="['/']" (click)="logOut()"><span>LogOut</span></a>
               </div>
               <ng-template #login>
                 <a [routerLink]="['/admin']"><span>Login</span></a>
               </ng-template>
             </li>
-            <li *ngIf="enableEdit">
+            <!-- <li *ngIf="enableEdit"> -->
+            <li *ngIf="edit">
               <a [routerLink]="['/admin_setup']">
                 <span class="mdi mdi-settings"></span>
               </a>

@@ -12,12 +12,14 @@ declare var $:any;
 })
 export class MenuComponent implements OnInit {
   private enableEdit: boolean;
+  public edit: boolean;
 
   constructor( private login_service: LoginService ){
     this.enableEdit = this.login_service.getUserLoggedIn();
   }
 
   ngOnInit() {
+    this.edit = this.enableEdit;  // Ver si funca en produccion
     // Utilizo jQuery para hacer los scrolls del menu
     $("#_inicio").click(function(){
       $('html, body').animate({
