@@ -13,11 +13,11 @@
     <div class="team-slider">
         <!-- Datos generados desde el servidor: -->
         <!-- La función sort en el query a la BD del lado del servidor devuelve el orden correcto, por lo que no necesito corregirlo acá -->
-        <ng-container *ngFor="let member of members">
+        <ng-container *ngFor="let member of members; let i=index">
             <ng-container *ngIf="enableEdit || member.show">    <!-- Si estoy editando muestro todos, si no, solo los habilitados -->
-                <div class="grid-container">
+                <div class="grid-container" (click)="openPopup('team-member-popup', i)">
                     <div class="foto">
-                        <img src="{{url+'get-image/'+member.picture}}" alt="" *ngIf="member.picture" (load)="showSlider()">
+                        <img src="{{url+'get-file/'+member.picture}}" alt="" *ngIf="member.picture" (load)="showSlider()">
                         <div *ngIf="enableEdit">
                             <a [routerLink]="['/edit','Equipo', member._id]">
                                 <span class="mdi mdi-settings"></span>
@@ -67,3 +67,15 @@
         </div> -->
     </div>
 </div>
+
+<popup-view id="team-member-popup">
+    <div class="grid-container" *ngIf="showPopup">
+        <div class="foto">
+            <img src="{{url+'get-file/'+members[member_index].picture}}" alt="" *ngIf="members[member_index].picture">
+        </div>
+        <div class="nombre">{{members[member_index].name}}</div>
+        <div class="cargo">{{members[member_index].position}}</div>
+        <div class="descripcion">{{members[member_index].description}}</div>
+    </div>
+</popup-view>
+

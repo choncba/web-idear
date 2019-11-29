@@ -27,6 +27,7 @@ export class TeamService {
   // Guarda un nuevo miembro en el servidor
   saveTeamMember(member: TeamMember): Observable<any>{
     let params = JSON.stringify(member);
+    console.log(params);
     return this._http.post(this.url+'save-member',params, {headers: this.json_header});
   }
 

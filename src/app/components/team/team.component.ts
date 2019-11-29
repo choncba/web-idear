@@ -3,6 +3,7 @@ import { TeamMember } from '../../models/models'
 import { TeamService } from '../../services/team.service';
 import { Global } from '../../services/global';
 import { LoginService } from '../../services/login.service';// Metodos de login
+import { PopupService } from '../popup/popup.service';
 
 declare var jQuery:any;
 declare var $:any;
@@ -11,20 +12,25 @@ declare var $:any;
   selector: 'app-team',
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.css'],
-  providers: [TeamService, LoginService]
+  providers: [TeamService, LoginService, PopupService]
 })
 export class TeamComponent implements OnInit {
   public url: string;
   public members: TeamMember[]; // Array del modelo team member para almacenar los datos del servidor
   public singleMember: TeamMember;
   public enableEdit: boolean;
+  public showPopup: boolean;
+  public member_index: number;
 
   constructor( 
     private team_service: TeamService,
-    private login_service: LoginService
+    private login_service: LoginService,
+    private popup_service: PopupService
   ){
     this.url = Global.url;
     this.enableEdit = this.login_service.getUserLoggedIn();
+    this.showPopup = false;
+    this.member_index = 0;
   }
 
   ngOnInit(){
@@ -61,8 +67,8 @@ export class TeamComponent implements OnInit {
         console.log(response);
         console.log('TeamMember almacenado en el modelo:');
         console.log(this.members);
-        console.log('Se encontraron '+this.members.length+' miembros');
-        //this.showSlider();
+        // console.log('Se encontraron '+this.members.length+' miembros');
+        // this.showSlider();
       },
       error => {
         console.log(<any>error);
@@ -86,6 +92,17 @@ export class TeamComponent implements OnInit {
         console.log(<any>error);
       }
     );
+  }
+
+  openPopup(id: string, i: number){
+    this.member_index = i;
+    this.showPopup = true;
+    this.popup_service.open(id);
+  }
+
+  closePopup(id: string){
+    this.showPopup = false;
+    this.popup_service.close(id);
   }
 
 }

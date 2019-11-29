@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
-
 import { AppRoutingModule } from './app-routing.module';
+import { PopupModule } from './components/popup/popup.module';
+
 import { AppComponent } from './app.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { InstitucionalComponent } from './components/institucional/institucional.component';
@@ -43,7 +43,8 @@ import { EditComponent } from './components/edit/edit.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    PopupModule
   ],
   providers: [],  // ver https://codingpotions.com/angular-login-sesion
   bootstrap: [AppComponent]

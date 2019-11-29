@@ -15,7 +15,7 @@ export class ActivityService {
 
   // Obtiene todas las actividades
   getActivities(): Observable<any>{
-    return this._http.get(this.url+'get-activities', {headers: this.json_header});
+    return this._http.get(this.url+'get-activity', {headers: this.json_header});
   }
 
   // Obtiene la actividad con el id especificado 

@@ -22,11 +22,11 @@ export class TeamMember{
 
 export class Activity{
     constructor(
-        public _id  : string,
-        public date : string,
-        public pictures : [],
-        public principal_picture : number,
-        public title : string, 
-        public text : string
+        public _id              : string,
+        public name             : string,
+        public description      : string,
+        public date_activity    : string,
+        public pictures         : [],
+        public front_picture : number,
     ){}
 }

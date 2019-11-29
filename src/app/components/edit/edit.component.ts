@@ -23,8 +23,7 @@ export class EditComponent implements OnInit{
   public member: TeamMember;
   public filesToUpload: Array<File>;  // Array para almacenar las imágenes que se subirán en el browser
   public status: string;
-  public member_id: string;
-
+  
   public imagePath;
   imgURL: any;
   public message: string;
@@ -58,53 +57,54 @@ export class EditComponent implements OnInit{
     } 
   }
 
-  crop(){
-    let image = document.getElementById("image");
-    //console.log(image);
-    new Cropme(image,
-      {
-        "container": {
-          "width": "100%",
-          "height": 300
-        },
-        "viewport": {
-          "width": 250,
-          "height": 200,
-          "type": "square",
-          "border": {
-            "width": 2,
-            "enable": true,
-            "color": "#fff"
-          }
-        },
-        "zoom": {
-          "enable": true,
-          "mouseWheel": true,
-          "slider": true
-        },
-        "rotation": {
-          "slider": true,
-          "enable": true,
-          "position": "left"
-        },
-        "transformOrigin": "viewport"
-      }
-    );
-  }
+  // crop(){
+  //   let image = document.getElementById("image");
+  //   //console.log(image);
+  //   new Cropme(image,
+  //     {
+  //       "container": {
+  //         "width": "100%",
+  //         "height": 300
+  //       },
+  //       "viewport": {
+  //         "width": 250,
+  //         "height": 200,
+  //         "type": "square",
+  //         "border": {
+  //           "width": 2,
+  //           "enable": true,
+  //           "color": "#fff"
+  //         }
+  //       },
+  //       "zoom": {
+  //         "enable": true,
+  //         "mouseWheel": true,
+  //         "slider": true
+  //       },
+  //       "rotation": {
+  //         "slider": true,
+  //         "enable": true,
+  //         "position": "left"
+  //       },
+  //       "transformOrigin": "viewport"
+  //     }
+  //   );
+  // }
 
-  cut(){
-    let image = $('image').Cropme();
-    let position = image.Cropme('position');
-    console.log(position);
-  }
+  // cut(){
+  //   let image = $('image').Cropme();
+  //   let position = image.Cropme('position');
+  //   console.log(position);
+  // }
 
   // Obtengo los datos de los team members desde el servidor y los almacena en el modelo
+  
   getMember(id){
     this.team_service.getTeamMember(id).subscribe(
       response => {
         if(response.team_member){
           this.member = response.team_member;
-          this.imgURL = this.url + 'get-image/' + this.member.picture;
+          this.imgURL = this.url + 'get-file/' + this.member.picture;
           //console.log(this.imgURL);
         }
       },
@@ -139,74 +139,81 @@ export class EditComponent implements OnInit{
   }
 
   saveTeamMember(){
-
-    this.team_service.saveTeamMember(this.member).subscribe(
-      response => {
-        //console.log(response);
-        if(response.member){
-          if(this.filesToUpload){
-            this._uploadService.makeFileRequest(Global.url+"upload-image/"+response.member._id, [], this.filesToUpload, 'image').then((result:any) => {
-              //console.log(result);
-              this.member_id = result.member;
-              this.status = 'success';
-            });
-          }
+    if(this.filesToUpload){
+      // Subo primero la imágen
+      this._uploadService.makeFileRequest(Global.url+"upload-file", [], this.filesToUpload, 'file').then((result:any) => {
+        // La imágen se almacena en el server y en la BD
+        this.member.picture = result.files._id; // Obtengo el ID de la imágen en la BD y lo cargo en la imágen del miembro
+        // Subo ahora la información del miembro
+        this.team_service.saveTeamMember(this.member).subscribe(
+        response => {
+          if(response.member){
+            this.status = "success";
+            alert(response.member.name + " ha sido guardado correctamente");
+            this.navigateHome();
+          } 
           else{
-            this.status = 'success';
-            this.member_id = response.member;
-          }
-
-          alert(response.member.name + " ha sido guardado correctamente");
-          this.navigateHome();
-        }
-        else{
-          this.status = 'failed';
+            this.status = "failed";
+            alert("No pudieron guardarse los cambios, intente más tarde");
+          } 
+        },
+        error => {
+          console.log(<any>error);
           alert("No pudieron guardarse los cambios, intente más tarde");
-          this.navigateHome();
-        }
-      },
-      error => {
-        console.log(<any>error);
-        alert("No pudieron guardarse los cambios, intente más tarde");
-        this.navigateHome();
-      }
-    );
-    //console.log("Subida: " + this.status);
+        });
+      });
+    }
+    else{
+      alert("Debe agregar una imágen");
+    }
   }
 
   updateTeamMember(){
     
-    this.team_service.updateTeamMember(this.member).subscribe(
-      response => {
-        //console.log(response);
-        if(response.member){
-          if(this.filesToUpload){
-            this._uploadService.makeFileRequest(Global.url+"upload-image/"+response.member._id, [], this.filesToUpload, 'image').then((result:any) => {
-              //console.log(result);
-              this.member_id = result.member;
-              this.status = 'success';
-            });
-          }
+    if(this.filesToUpload){
+      // Subo primero la imágen
+      this._uploadService.makeFileRequest(Global.url+"upload-file", [], this.filesToUpload, 'file').then((result:any) => {
+        // La imágen se almacena en el server y en la BD
+        this.member.picture = result.files._id; // Obtengo el ID de la imágen en la BD y lo cargo en la imágen del miembro
+        // Subo ahora la información del miembro
+        this.team_service.updateTeamMember(this.member).subscribe(
+        response => {
+          if(response.member){
+            this.status = "success";
+            alert(response.member.name + " ha sido actualizado correctamente");
+            this.navigateHome();
+          } 
           else{
-            this.status = 'success';
-            this.member_id = response.member;
-          }
-          alert(response.member.name + " ha sido actualizado correctamente");
-          this.navigateHome();
-        }
-        else{
-          this.status = 'failed';
+            this.status = "failed";
+            alert("No pudieron guardarse los cambios, intente más tarde");
+          } 
+        },
+        error => {
+          console.log(<any>error);
           alert("No pudieron guardarse los cambios, intente más tarde");
-          this.navigateHome();
+        });
+      });
+    }
+    else{
+      // No necesito subir imágenes, actualizo sólo el miembro
+      this.team_service.updateTeamMember(this.member).subscribe(
+        response => {
+          if(response.member){
+            this.status = "success";
+            alert(response.member.name + " ha sido actualizado correctamente");
+            this.navigateHome();
+          } 
+          else{
+            this.status = "failed";
+            alert("No pudieron guardarse los cambios, intente más tarde");
+          } 
+        },
+        error => {
+          console.log(<any>error);
+          alert("No pudieron guardarse los cambios, intente más tarde");
         }
-      },
-      error => {
-        console.log(<any>error);
-        alert("No pudieron guardarse los cambios, intente más tarde");
-        this.navigateHome();
-      }
-    );
-    //console.log("Subida: " + this.status);
+      );
+    }
   }
 
   deleteTeamMember(){
@@ -216,14 +223,14 @@ export class EditComponent implements OnInit{
         response => {
           if(response.member){
             alert(this.member.name + " ha sido eliminado");
-            this.navigateHome();
           }
-        },error => {
-          //console.log("Hubo un error al borrar");
+        },
+        error => {
+          console.log(<any>error);
           alert("Hubo un error al borrar " + this.member.name + " intente más tarde");
-          this.navigateHome();
         }
       );
+      this.navigateHome();
     }
   }
 

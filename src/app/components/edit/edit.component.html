@@ -44,13 +44,14 @@
     </div>
     <div class="botones">
         <!-- <span *ngIf="message">{{message}}</span> -->
+        <button>Seleccionar Imágen</button>
         <!-- Hago así el botón de subir para poder editar el estilo: https://blog.benestudio.co/custom-file-upload-button-with-pure-css-5aacf39aa0a -->
         <div class="boton-upload">
             <button>Subir Imágen</button>
             <!-- <input type="file" name="image" accept="image/*" (change)="fileChangeEvent($event)"> -->
             <input #file type="file" name="image" accept='image/*' (change)="preview(file.files)">
         </div>
-        <button id="crop" (click)="cut()">Cortar</button>
+        <!-- <button id="crop" (click)="cut()">Cortar</button> -->
         <ng-container *ngIf="id == 'new'; else UPDATE">
             <button id="save" (click)="saveTeamMember()">Guardar</button>
         </ng-container>
