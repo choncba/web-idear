@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { PopupModule } from './components/popup/popup.module';
 
 import { AppComponent } from './app.component';
 import { SliderComponent } from './components/slider/slider.component';
@@ -20,6 +19,9 @@ import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { ErrorComponent } from './components/error/error.component';
 import { EditComponent } from './components/edit/edit.component';
+
+import { ModalModule } from './_modal';
+import { MasonryGalleryModule } from 'ngx-masonry-gallery';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { EditComponent } from './components/edit/edit.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    PopupModule
+    ModalModule,
+    MasonryGalleryModule
   ],
   providers: [],  // ver https://codingpotions.com/angular-login-sesion
   bootstrap: [AppComponent]

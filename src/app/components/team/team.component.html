@@ -15,8 +15,8 @@
         <!-- La función sort en el query a la BD del lado del servidor devuelve el orden correcto, por lo que no necesito corregirlo acá -->
         <ng-container *ngFor="let member of members; let i=index">
             <ng-container *ngIf="enableEdit || member.show">    <!-- Si estoy editando muestro todos, si no, solo los habilitados -->
-                <div class="grid-container" (click)="openPopup('team-member-popup', i)">
-                    <div class="foto">
+                <div class="grid-container">
+                    <div class="foto" (click)="openModal('view', i)">
                         <img src="{{url+'get-file/'+member.picture}}" alt="" *ngIf="member.picture" (load)="showSlider()">
                         <div *ngIf="enableEdit">
                             <a [routerLink]="['/edit','Equipo', member._id]">
@@ -68,14 +68,17 @@
     </div>
 </div>
 
-<popup-view id="team-member-popup">
-    <div class="grid-container" *ngIf="showPopup">
-        <div class="foto">
-            <img src="{{url+'get-file/'+members[member_index].picture}}" alt="" *ngIf="members[member_index].picture">
+<!-- Popup -->
+<jw-modal id="view">
+    <div class="view_member" *ngIf="viewMember">    
+        <div class="view_photo">
+            <img src="{{url+'get-file/'+viewMember.picture}}" alt="" *ngIf="viewMember.picture">
         </div>
-        <div class="nombre">{{members[member_index].name}}</div>
-        <div class="cargo">{{members[member_index].position}}</div>
-        <div class="descripcion">{{members[member_index].description}}</div>
+        <div class="view_text">
+            <div class="view_name">{{viewMember.name}}</div>
+            <div class="view_position">{{viewMember.position}}</div>
+            <div class="view_description">{{viewMember.description}}</div>
+        </div>
     </div>
-</popup-view>
+</jw-modal>
 

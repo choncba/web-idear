@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 //declare var jQuery:any;
 //declare var $:any;
+import { ModalService } from '../../_modal';
 
 @Component({
   selector: 'app-main',
@@ -16,6 +17,7 @@ export class MainComponent implements OnInit {
 
   constructor(
     //private login_service: LoginService
+    private modalService: ModalService
   ) { }
 
   ngOnInit() {
@@ -28,4 +30,12 @@ export class MainComponent implements OnInit {
                                                               // el local storage
     //console.log(this.enable_edit?'Edición Activada':'Edición Desactivada');
   //}
+
+  openModal(id: string) {
+    this.modalService.open(id);
+}
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
 }

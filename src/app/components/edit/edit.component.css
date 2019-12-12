@@ -1,6 +1,5 @@
-/* Team Slider */
-/* Grilla de los componentes del slider */
-.member-list {
+/* Grilla para editar miembro */
+.member-grid {
     display: grid;
     grid-template-columns: 25% 20% 20% 25% 5% 5%;
     grid-template-rows: 1auto;
@@ -16,6 +15,37 @@
 .ver { grid-area: ver; }
 
 /* FIN de grilla */
+
+/* Grilla Actividad */
+.activity-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100px 1auto;
+    grid-template-areas: "act_titulo_imagenes act_titulo_texto" "act_imagenes act_texto_botones";
+}
+  
+.act_titulo_texto { grid-area: act_titulo_texto; }
+
+.act_titulo_imagenes { grid-area: act_titulo_imagenes; }
+
+.act_imagenes { grid-area: act_imagenes; }
+
+.act_texto_botones {
+display: grid;
+grid-template-columns: 1fr;
+grid-template-rows: 85% 15%;
+grid-template-areas: "act_texto" "act_botones";
+grid-area: act_texto_botones;
+}
+
+.act_texto{ grid-area: act_texto; }
+
+.act_botones{ 
+    grid-area: act_botones; 
+    text-align: center;
+    padding-top: 10px;           
+}
+/* Fin grilla actividades */
 
 .titulo{
     padding-top: 10px;
@@ -35,7 +65,7 @@
     position: relative;
 }
 
-.rotulos, .nombre, .cargo, .descripcion, .ver, .orden, .foto{
+.rotulos, .nombre, .cargo, .descripcion, .ver, .orden, .foto, .fecha{
     font-family: 'Open Sans Thin';
     font-size: 14px;
     text-align: center;
@@ -91,10 +121,50 @@
     margin-right: 10px;
 }
 
+.act_botones button{
+    background: #21748C;
+    color: white;
+    font-family: 'Open Sans Thin';
+    font-size: 18px;
+    width: auto;
+    height: 50px;
+    border: 1px solid white;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .boton-upload input[type=file] {
     font-size: 100px;
     position: absolute;
     left: 0;
     top: 0;
     opacity: 0;
+}
+
+.preview_img img{
+    max-height: 100px;
+    padding: 10px;
+}
+
+.act_imagenes{
+    margin-left: 50px;
+}
+
+.image{
+    width: 150px;
+    height: 150px;
+    padding: 20px;
+    float: left;
+}
+
+.image img{
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+
+.selected{
+    border: 2px solid #21748C;
+    border-radius: 20px;
 }

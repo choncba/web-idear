@@ -11,15 +11,33 @@
 </div>
 <div id='filter'>
     <button class='all active'>Todos</button>
-    <button class='2015'>2015</button>
+    <ng-container *ngFor="let year of years">
+        <button class='{{year}}'>{{year}}</button>
+    </ng-container>
+    
+    <!-- <button class='2015'>2015</button>
     <button class='2016'>2016</button>
     <button class='2017'>2017</button>
     <button class='2018'>2018</button>
-    <button class='2019'>2019</button>
+    <button class='2019'>2019</button> -->
+</div>
+<div id="posts">
+    <ng-container *ngFor="let act of activities; let i = index">
+        <div class='post {{years[i]}}' (click)="openModal('view_act', i)">
+            <img [src]="url+'get-file/'+act.pictures[act.front_picture]"/>
+            <div class='post-content'>
+                <h2>{{years[i]}}</h2>
+                <p>{{act.name}}</p>
+            </div>
+            <a [routerLink]="['/edit','Actividades', act._id]" *ngIf="enableEdit">
+                <span class="mdi mdi-settings"></span>
+            </a>
+        </div>
+    </ng-container>
 </div>
 
-<div id='posts'>
-    <div class='post 2016'><img src='../../../assets/actividades/2016/01/ciclo de conferencias.jpg'/>
+<!-- <div id='posts'>
+    <div class='post 2010'><img src='../../../assets/actividades/2016/01/ciclo de conferencias.jpg'/>
         <div class='post-content'>
             <h2>2016</h2>
             <p>Ciclo de Conferencias</p>
@@ -32,47 +50,22 @@
         <p>Desayuno con Martin Llaryora</p>
         <a href="#">View more</a> </div>
     </div>
-    <div class='post 2016'><img src='../../../assets/actividades/2016/11/visita llaryora.jpg'/>
-        <div class='post-content'>
-        <h2>2016</h2>
-        <p>Visita de Martin Llaryora ala Municipalidad de Córdoba</p>
-        <a href="#">View more</a> </div>
-    </div>
-    <div class='post 2017'><img src='../../../assets/actividades/2017/10/22195925_1942637399357091_6623208264107478915_n-640x640.jpg'/>
-        <div class='post-content'>
-        <h2>2017</h2>
-        <p>Este es otro ejemplo de una actividad</p>
-        <a href="#">View more</a> </div>
-    </div>
-    <div class='post 2017'><img src='../../../assets/actividades/2017/03/20170704_141844-1120x630.jpg'/>
-        <div class='post-content'>
-        <h2>2017</h2>
-        <p>Este es otro ejemplo de una actividad</p>
-        <a href="#">View more</a> </div>
-    </div>
-    <div class='post 2018'><img src='../../../assets/actividades/2018/03/23004466_1955060594781438_2118483342606423412_o-1120x630.jpg'/>
-        <div class='post-content'>
-        <h2>2018</h2>
-        <p>Este es otro ejemplo de una actividad</p>
-        <a href="#">View more</a> </div>
-    </div>
-    <div class='post 2018'><img src='../../../assets/actividades/2018/07/31265308_2036944343259729_1477691624266924032_o-1024x412.jpg'/>
-        <div class='post-content'>
-        <h2>2018</h2>
-        <p>Este es otro ejemplo de una actividad</p>
-        <a href="#">View more</a> </div>
-    </div>
-    <div class='post 2018'><img src='../../../assets/actividades/2018/10/43476147_2162502370703925_1441579028141047808_n-780x439.jpg'/>
-        <div class='post-content'>
-        <h2>2018</h2>
-        <p>Este es otro ejemplo de una actividad</p>
-        <a href="#">View more</a> </div>
-    </div>
-    <div class='post 2019'><img src='../../../assets/actividades/2019/04/55535181_2267760070178154_5658016094128963584_o-1024x768.jpg'/>
-        <div class='post-content'>
-        <h2>2019</h2>
-        <p>Este es otro ejemplo de una actividad</p>
-        <a href="#">View more</a> </div>
-    </div>
-</div>
+</div> -->
+
 <div class='hidden'></div>
+
+<jw-modal id="view_act">
+    <div class="view_act" *ngIf="viewActivity">    
+        <div class="view_photos">
+            <ngx-masonry-gallery #masonryGallery [width]="300" [images]="masonryPictures" (click)="selectPicture()"></ngx-masonry-gallery>
+            <!-- <ng-container *ngFor="let foto of viewActivity.pictures">
+                <img src="{{url+'get-file/'+foto}}" alt="" *ngIf="foto">
+            </ng-container> -->
+        </div>
+        <div class="view_text">
+            <div class="view_date">{{viewActivity.date_activity}}</div>
+            <div class="view_name">{{viewActivity.name}}</div>
+            <div class="view_description">{{viewActivity.description}}</div>
+        </div>
+    </div>
+</jw-modal>

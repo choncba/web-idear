@@ -116,3 +116,57 @@
 .bx-wrapper {
     box-shadow: none;
 }
+
+.view_member{
+   display: block;
+   overflow: hidden;
+}
+
+.view_photo{
+    float: left;
+    width: 50%;
+    overflow: hidden;
+}
+
+.view_text{
+    display: block;
+    float: right;
+    width: 50%;
+    text-align: center;
+}
+
+.view_photo img{
+    max-width: max-content;
+}
+
+.view_name{
+    font-family: 'Open Sans Bold';
+    font-size: 14px;
+    text-align: center;
+    color: #444444;
+    text-transform: uppercase;
+    padding: 18px 0px 0px 0px;
+}
+
+.view_name::after{
+    background: #21748C;
+    display: block;
+    content: "";
+    height: 1px;
+    width: 120px;
+    margin: 15px auto 10px;
+    position: relative;
+}
+
+.view_position{
+    font-family: 'Open Sans Thin';
+    font-size: 14px;
+    text-align: center;
+}
+
+.view_description{
+    font-family: 'Open Sans Thin';
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}

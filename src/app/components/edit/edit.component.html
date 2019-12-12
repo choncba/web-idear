@@ -5,14 +5,19 @@
 </div>
 <div class="container">
     <ng-container *ngIf="id == 'new'; else EDIT">
-        <h1 class="titulo">Agregar Miembro</h1>
+        <h1 class="titulo" *ngIf="tipo == 'Equipo'">Agregar Miembro</h1>
+        <h1 class="titulo" *ngIf="tipo == 'Actividades'">Agregar Actividad</h1>
     </ng-container>
     <ng-template #EDIT>
-        <h1 class="titulo">Editar Miembro: {{member.name}}</h1>
+        <h1 class="titulo" *ngIf="tipo == 'Equipo'">Editar Miembro: {{member.name}}</h1>
+        <h1 class="titulo" *ngIf="tipo == 'Actividades'">Editar Actividad: {{activity.name}}</h1>
     </ng-template>
 </div>
+
+<!-- Editar Equipo -->
+
 <div class="container" *ngIf="tipo == 'Equipo'">
-    <div class="member-list rotulos">
+    <div class="member-grid rotulos">
         <div class="foto">Foto</div>
         <div class="nombre">Nombre</div>
         <div class="cargo">Cargo</div>
@@ -21,10 +26,12 @@
         <div class="ver">Ver</div>
     </div>
     <hr>
-    <div class="member-list">
+    <div class="member-grid">
         <div class="foto imagen">
             <!-- <img [src]="imgURL" *ngIf="imgURL" id="image" (load) = "crop()"> -->
             <img [src]="imgURL" *ngIf="imgURL" id="image">
+            <!-- Tambien así puedo usar src sin una variable adicional, pero la necesito para el preview: -->
+            <!-- <img src="{{url}}get-file/{{member.picture}}" *ngIf="member.picture" id="image"> -->
         </div>
         <div class="nombre">
             <input type="text" #name="ngModel" [(ngModel)]="member.name">
@@ -62,8 +69,59 @@
         <button id="cancel" [routerLink]="[ '/']">Cancelar</button>
     </div>
 </div>
-<div class="container" *ngIf="tipo == 'Actividades'">
 
+<!-- Editar Actividades -->
+
+<div class="container" *ngIf="tipo == 'Actividades'">
+    <div class="activity-grid">
+        <div class="act_titulo_texto rotulos"><h1>Ingresar Información</h1></div>
+        <div class="act_titulo_imagenes rotulos"><h1>Imágenes</h1></div>
+        <div class="act_imagenes">
+            <ng-container *ngIf="id == 'new'; else editar">
+                <div id="preview"></div>
+            </ng-container>
+            <ng-template #editar>
+                <ng-container *ngFor="let url of imgURL_list; let i=index">
+                    <div id="image{{i}}" *ngIf="url" (click)="selectPicture(i)" class="image" [ngClass]="{'selected': activity.front_picture == i}">
+                        <img [src]="url">
+                    </div>
+                </ng-container>
+                <!-- <ngx-masonry-gallery [widh]='250' [images]='images' *ngIf="images"></ngx-masonry-gallery> -->
+            </ng-template>
+        </div>
+        <div class="act_texto_botones ">
+            <div class="act_texto">
+                <div class="nombre">
+                    <label>Nombre: <input type="text" #name="ngModel" [(ngModel)]="activity.name"></label>
+                </div>
+                <div class="fecha">
+                    <label>Fecha: <input type="date" #date_activity="ngModel" [(ngModel)]="activity.date_activity"></label>
+                </div>
+                <div class="descripcion">
+                    <label>Descripción: <textarea cols="35" rows="10" #description="ngModel" [(ngModel)]="activity.description"></textarea></label>
+                </div>
+            </div>
+            <div class="act_botones">
+                <!-- <span *ngIf="message">{{message}}</span> -->
+                <button>Seleccionar Imágenes</button>
+                <!-- Hago así el botón de subir para poder editar el estilo: https://blog.benestudio.co/custom-file-upload-button-with-pure-css-5aacf39aa0a -->
+                <div class="boton-upload">
+                    <button>Subir Imágenes</button>
+                    <input #file type="file" name="image" accept='image/*' multiple (change)="previewFiles(file.files)">
+                    <!-- <input #file type="file" name="image" accept='image/*' multiple (change)="masonryPreview(file.files)"> -->
+                </div>
+                <!-- <button id="crop" (click)="cut()">Cortar</button> -->
+                <ng-container *ngIf="id == 'new'; else UPDATE">
+                    <button id="save" (click)="saveActivity()">Guardar</button>
+                </ng-container>
+                <ng-template #UPDATE>
+                    <button id="save" (click)="updateActivity()">Guardar</button>
+                    <button id="delete" (click)="deleteActivity()">Eliminar</button>
+                </ng-template>
+                <button id="cancel" [routerLink]="[ '/']">Cancelar</button>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="container" *ngIf="tipo == 'Testimonios'">
 

@@ -26,7 +26,7 @@ export class Activity{
         public name             : string,
         public description      : string,
         public date_activity    : string,
-        public pictures         : [],
+        public pictures         : string,
         public front_picture : number,
     ){}
 }

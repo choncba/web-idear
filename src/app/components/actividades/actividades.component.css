@@ -126,8 +126,9 @@
 #posts .post .post-content::before,
 #posts .post .post-content::after { pointer-events: none; }
 
-#posts .post .post-content,
-#posts .post a {
+/* #posts .post .post-content,
+#posts .post a { */
+#posts .post .post-content{
   position: absolute;
   top: 0;
   left: 0;
@@ -136,11 +137,28 @@
 }
 
 #posts .post a {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 10%;
+  height: 10%;
+}
+
+/* #posts .post a {
   z-index: 1000;
   text-indent: 200%;
   white-space: nowrap;
   font-size: 0;
   opacity: 0;
+} */
+
+#posts .post a {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 10;
+  color: white;
+  font-size: 24px;
 }
 
 #posts .post h2 {
@@ -177,4 +195,49 @@
  @media screen and (max-width: 600px) {
 
 #posts .post { width: 50%; }
+}
+
+.view_act{
+  display: block;
+  overflow: hidden;
+}
+
+.view_photos{
+  /* display: block; */
+  width: 60%;
+  float: left;
+  overflow: hidden;
+}
+
+.view_text{
+  display: block;
+  width: 40%;
+  float: right;
+  /* overflow: hidden; */
+}
+
+.view_name{
+  font-family: 'Open Sans Bold';
+  font-size: 18px;
+  text-align: center;
+  color: #444444;
+  text-transform: uppercase;
+  padding: 18px 0px 0px 0px;
+}
+
+.view_name::after{
+  background: #21748C;
+  display: block;
+  content: "";
+  height: 1px;
+  width: 120px;
+  margin: 15px auto 10px;
+  position: relative;
+}
+
+.view_description, .view_date{
+  font-family: 'Open Sans Thin';
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
 }
