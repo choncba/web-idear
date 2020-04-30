@@ -22,7 +22,7 @@
     "bxslider": "^4.2.14",
     "cropme": "^1.4.1",
     "jarallax": "^1.11.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ngx-masonry-gallery": "^3.0.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
